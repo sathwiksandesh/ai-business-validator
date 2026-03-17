@@ -6,3 +6,7 @@ python-dotenv
 plotly
 beautifulsoup4
 google-genai
+groq
+python-dotenv
+streamlit
+requests
