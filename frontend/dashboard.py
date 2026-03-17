@@ -20,88 +20,93 @@ st.set_page_config(
 )
 
 # ─────────────────────────────────────────────
-# GLOBAL STYLES
+# GLOBAL STYLES (FIXED + PREMIUM)
 # ─────────────────────────────────────────────
 st.markdown("""
 <style>
-    /* ── Layout ── */
-    .block-container {
-        padding-top: 2rem;
-        padding-bottom: 3rem;
-        max-width: 1200px;
-    }
+.block-container {
+    padding-top: 4rem !important;
+    padding-bottom: 3rem;
+    max-width: 1200px;
+}
 
-    /* ── Typography ── */
-    .page-title {
-        font-size: 2.4rem;
-        font-weight: 700;
-        color: #4F8BF9;
-        margin-bottom: 0.2rem;
-    }
+/* Title */
+.page-title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: #4F8BF9;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
 
-    .page-subtitle {
-        font-size: 1rem;
-        color: #94a3b8;
-        margin-bottom: 1.5rem;
-    }
+/* Subtitle */
+.page-subtitle {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    margin-bottom: 2rem;
+}
 
-    .section-label {
-        font-size: 0.72rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: #64748b;
-        margin-bottom: 0.4rem;
-    }
+/* Labels */
+.section-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+}
 
-    .card-title {
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: #e2e8f0;
-        margin-bottom: 0.75rem;
-    }
+/* Card titles */
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin-bottom: 0.8rem;
+}
 
-    /* ── Cards ── */
-    .card {
-        background: #0f172a;
-        border: 1px solid #1e293b;
-        border-radius: 14px;
-        padding: 1.4rem 1.6rem;
-        margin-bottom: 1.25rem;
-        height: 100%;
-    }
+/* Cards */
+.card {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 18px;
+    padding: 1.8rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
 
-    .card-accent-blue  { border-left: 4px solid #4F8BF9; }
-    .card-accent-green { border-left: 4px solid #22c55e; }
-    .card-accent-amber { border-left: 4px solid #f59e0b; }
-    .card-accent-rose  { border-left: 4px solid #f43f5e; }
-    .card-accent-purple{ border-left: 4px solid #a855f7; }
+.card-accent-blue  { border-left: 4px solid #4F8BF9; }
+.card-accent-green { border-left: 4px solid #22c55e; }
+.card-accent-amber { border-left: 4px solid #f59e0b; }
+.card-accent-rose  { border-left: 4px solid #f43f5e; }
+.card-accent-purple{ border-left: 4px solid #a855f7; }
 
-    /* ── Score badge ── */
-    .score-badge {
-        display: inline-block;
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: #4F8BF9;
-        line-height: 1;
-    }
+/* Button */
+.stButton > button {
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 0.6rem 1.2rem;
+}
 
-    .verdict-pill {
-        display: inline-block;
-        padding: 0.35rem 1rem;
-        border-radius: 999px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        background: #166534;
-        color: #bbf7d0;
-        margin-top: 0.5rem;
-    }
+/* Score */
+.score-badge {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: #4F8BF9;
+}
 
-    /* ── Divider ── */
-    hr { border-color: #1e293b !important; margin: 1.5rem 0; }
+.verdict-pill {
+    padding: 0.45rem 1.2rem;
+    font-size: 0.95rem;
+    border-radius: 999px;
+}
+
+/* Divider */
+hr {
+    margin: 2rem 0;
+}
 </style>
 """, unsafe_allow_html=True)
-
 
 # ─────────────────────────────────────────────
 # HEADER
@@ -114,30 +119,30 @@ st.markdown(
 )
 st.divider()
 
-
 # ─────────────────────────────────────────────
 # INPUT
 # ─────────────────────────────────────────────
 idea = st.text_input(
     label="Your Startup Idea",
-    placeholder="e.g. An AI-powered tool that helps freelancers write better proposals",
-    label_visibility="visible"
+    placeholder="e.g. AI agriculture assistant for farmers"
 )
 
-analyze_clicked = st.button("🔍 Analyze Startup Idea", type="primary", use_container_width=False)
-
+analyze_clicked = st.button(
+    "🔍 Analyze Startup Idea",
+    type="primary",
+    use_container_width=True
+)
 
 # ─────────────────────────────────────────────
-# ANALYSIS RESULTS
+# ANALYSIS
 # ─────────────────────────────────────────────
 if analyze_clicked:
     if not idea.strip():
         st.warning("Please enter a startup idea before analyzing.")
         st.stop()
 
-    with st.spinner("Running AI analysis — this may take a moment…"):
+    with st.spinner("Running AI analysis — please wait..."):
 
-        # ── Fetch all data ──────────────────────────────
         analysis       = analyze_idea(idea)
         advice         = mentor_advice(idea)
         market         = get_market_data(idea)
@@ -147,69 +152,50 @@ if analyze_clicked:
 
     st.divider()
 
-    # ── Row 1 : Idea Analysis  |  Mentor Advice ─────────
-    col1, col2 = st.columns(2, gap="medium")
+    # ── Row 1 ─────────────────────────────
+    col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown(
-            '<div class="card card-accent-blue">'
-            '<p class="section-label">AI Analysis</p>'
-            '<p class="card-title">📊 Idea Breakdown</p>',
-            unsafe_allow_html=True
-        )
+        st.markdown('<div class="card card-accent-blue">', unsafe_allow_html=True)
+        st.markdown('<p class="section-label">AI Analysis</p>', unsafe_allow_html=True)
+        st.markdown('<p class="card-title">📊 Idea Breakdown</p>', unsafe_allow_html=True)
 
-        with st.expander("⚠️ Risks", expanded=True):
-            st.info("Potential challenges the startup might face.")
-
-        with st.expander("🌟 Opportunities", expanded=True):
-            st.success("Possible growth opportunities.")
-
-        st.markdown("**Detailed analysis**")
         st.write(analysis)
         st.markdown("</div>", unsafe_allow_html=True)
 
     with col2:
-        st.markdown(
-            '<div class="card card-accent-purple">'
-            '<p class="section-label">Strategy</p>'
-            '<p class="card-title">🧠 Mentor Advice</p>',
-            unsafe_allow_html=True
-        )
+        st.markdown('<div class="card card-accent-purple">', unsafe_allow_html=True)
+        st.markdown('<p class="section-label">Strategy</p>', unsafe_allow_html=True)
+        st.markdown('<p class="card-title">🧠 Mentor Advice</p>', unsafe_allow_html=True)
+
         st.write(advice)
         st.markdown("</div>", unsafe_allow_html=True)
 
-    # ── Row 2 : Market Research  |  Competitors ─────────
-    col3, col4 = st.columns(2, gap="medium")
+    # ── Row 2 ─────────────────────────────
+    col3, col4 = st.columns(2)
 
     with col3:
-        st.markdown(
-            '<div class="card card-accent-green">'
-            '<p class="section-label">Research</p>'
-            '<p class="card-title">📈 Market Research</p>',
-            unsafe_allow_html=True
-        )
+        st.markdown('<div class="card card-accent-green">', unsafe_allow_html=True)
+        st.markdown('<p class="section-label">Research</p>', unsafe_allow_html=True)
+        st.markdown('<p class="card-title">📈 Market Research</p>', unsafe_allow_html=True)
+
         st.write(market)
         st.markdown("</div>", unsafe_allow_html=True)
 
     with col4:
-        st.markdown(
-            '<div class="card card-accent-amber">'
-            '<p class="section-label">Landscape</p>'
-            '<p class="card-title">🏢 Competitor Analysis</p>',
-            unsafe_allow_html=True
-        )
-        st.dataframe(competitors_df, use_container_width=True, hide_index=True)
+        st.markdown('<div class="card card-accent-amber">', unsafe_allow_html=True)
+        st.markdown('<p class="section-label">Landscape</p>', unsafe_allow_html=True)
+        st.markdown('<p class="card-title">🏢 Competitor Analysis</p>', unsafe_allow_html=True)
+
+        st.dataframe(competitors_df, width="stretch", hide_index=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
-    # ── Row 3 : Feasibility Score ────────────────────────
-    st.markdown(
-        '<div class="card card-accent-rose">'
-        '<p class="section-label">Evaluation</p>'
-        '<p class="card-title">⚡ Feasibility Score</p>',
-        unsafe_allow_html=True
-    )
+    # ── Score ─────────────────────────────
+    st.markdown('<div class="card card-accent-rose">', unsafe_allow_html=True)
+    st.markdown('<p class="section-label">Evaluation</p>', unsafe_allow_html=True)
+    st.markdown('<p class="card-title">⚡ Feasibility Score</p>', unsafe_allow_html=True)
 
-    score_col, verdict_col, spacer = st.columns([1, 2, 3])
+    score_col, verdict_col = st.columns([1, 3])
 
     with score_col:
         st.markdown(f'<span class="score-badge">{score}</span>', unsafe_allow_html=True)
@@ -220,12 +206,10 @@ if analyze_clicked:
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-    # ── Row 4 : Pitch Deck ───────────────────────────────
-    st.markdown(
-        '<div class="card card-accent-blue">'
-        '<p class="section-label">Pitch</p>'
-        '<p class="card-title">🎤 Startup Pitch Deck</p>',
-        unsafe_allow_html=True
-    )
+    # ── Pitch ─────────────────────────────
+    st.markdown('<div class="card card-accent-blue">', unsafe_allow_html=True)
+    st.markdown('<p class="section-label">Pitch</p>', unsafe_allow_html=True)
+    st.markdown('<p class="card-title">🎤 Startup Pitch Deck</p>', unsafe_allow_html=True)
+
     st.write(pitch)
     st.markdown("</div>", unsafe_allow_html=True)
