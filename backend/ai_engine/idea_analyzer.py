@@ -1,10 +1,7 @@
+import streamlit as st
 from google import genai
-import os
-from dotenv import load_dotenv
 
-load_dotenv()
-
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
 def analyze_idea(idea):
 
@@ -21,9 +18,13 @@ def analyze_idea(idea):
     - Feasibility score
     """
 
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=prompt
-    )
+    try:
+        response = client.models.generate_content(
+            model="gemini-flash-latest",
+            contents=prompt
+        )
 
-    return response.text
+        return response.text
+
+    except Exception as e:
+        return "⚠️ AI analysis temporarily unavailable due to API limits. Please try again."
