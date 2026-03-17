@@ -32,11 +32,11 @@ st.markdown("""
 
 /* Title */
 .page-title {
-    font-size: 4.2rem;
-    font-weight: 900;
-    background: linear-gradient(90deg, #4F8BF9, #a855f7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 4rem;        /* 🔥 increased */
+    font-weight: 900;       /* 🔥 bolder */
+    color: #4F8BF9;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;       /* 🔥 prevents cut */
 }
 
 /* Subtitle */
