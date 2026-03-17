@@ -3,7 +3,7 @@ from google import genai
 
 client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
-def analyze_full_idea(idea):
+def analyze_idea(idea):
 
     prompt = f"""
     Analyze this startup idea:
