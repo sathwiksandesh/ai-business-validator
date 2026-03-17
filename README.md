@@ -120,32 +120,30 @@ Streamlit Dashboard (User Interface)
 ------------------------------------------------------------------------
 
 # 🖥️ Project Structure
-ai-startup-validator/
+ai-startup-validator
 │
-├── frontend/
+├── frontend
 │   └── dashboard.py
 │
-├── backend/
+├── backend
 │   │
-│   ├── ai_engine/
+│   ├── ai_engine
 │   │   ├── idea_analyzer.py
 │   │   ├── mentor_agent.py
 │   │   └── pitch_generator.py
 │   │
-│   ├── research/
+│   ├── research
 │   │   ├── market_scraper.py
 │   │   └── competitor_finder.py
 │   │
-│   └── scoring/
+│   └── scoring
 │       └── feasibility_score.py
 │
-├── utils/
+├── utils
 │
 ├── requirements.txt
 ├── .env
 └── README.md
-
-------------------------------------------------------------------------
 
 # ▶️ Installation & Setup
 
