@@ -3,19 +3,24 @@ from google import genai
 
 client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
-def analyze_idea(idea):
+def analyze_full_idea(idea):
 
     prompt = f"""
     Analyze this startup idea:
 
     {idea}
 
-    Provide:
-    - Market demand
-    - Competition
-    - Risks
-    - Opportunities
-    - Feasibility score
+    Return structured output with:
+
+    1. Market Demand
+    2. Competition
+    3. Risks
+    4. Opportunities
+    5. Business Model
+    6. Revenue Streams
+    7. Growth Strategy
+    8. Feasibility Score (0-100)
+    9. Pitch Summary
     """
 
     try:
@@ -26,5 +31,5 @@ def analyze_idea(idea):
 
         return response.text
 
-    except Exception as e:
-        return "⚠️ AI analysis temporarily unavailable due to API limits. Please try again."
+    except Exception:
+        return "⚠️ AI service temporarily unavailable. Please try again."
