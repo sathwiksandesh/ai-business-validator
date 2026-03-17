@@ -1,37 +1,58 @@
-from google import genai
+from groq import Groq
 import os
 from dotenv import load_dotenv
 import time
 
 load_dotenv()
 
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+# ✅ secure key usage
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 def mentor_advice(idea):
 
     prompt = f"""
     You are a startup mentor.
 
-    Provide strategic advice for this idea:
+    Give practical advice for:
 
     {idea}
 
-    Include:
-    - Business Model
-    - Revenue Streams
-    - Go To Market Strategy
-    - Growth Plan
+    Format:
+
+    Business Model:
+    - 4 points
+
+    Revenue Streams:
+    - 4 points
+
+    Go To Market Strategy:
+    - 4 points
+
+    Growth Plan:
+    - 4 points
     """
 
-    for attempt in range(3):   # retry 3 times
+    for attempt in range(2):
         try:
-            response = client.models.generate_content(
-                model="gemini-2.5-flash",
-                contents=prompt
+            response = client.chat.completions.create(
+                model="llama-3.1-8b-instant",
+                messages=[
+                    {"role": "system", "content": "You are an expert startup mentor."},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.6
             )
-            return response.text
+
+            result = response.choices[0].message.content
+
+            if result:
+                return result.strip()
+
+            return "⚠️ Empty response. Try again."
 
         except Exception as e:
-            time.sleep(2)
+            print(f"Attempt {attempt+1} failed:", str(e))
 
-    return "⚠️ Mentor advice temporarily unavailable due to high AI demand. Please try again."
+            return "⚠️ API temporarily unavailable."
+
+    return "⚠️ Mentor advice temporarily unavailable."
