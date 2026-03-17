@@ -120,6 +120,7 @@ Streamlit Dashboard (User Interface)
 ------------------------------------------------------------------------
 
 # 🖥️ Project Structure
+```
 ai-startup-validator
 │
 ├── frontend
@@ -144,7 +145,7 @@ ai-startup-validator
 ├── requirements.txt
 ├── .env
 └── README.md
-
+```
 # ▶️ Installation & Setup
 
 ## 1️⃣ Clone the Repository
@@ -253,3 +254,4 @@ This project is licensed under the **MIT License**.
 Creator of **AI Business Idea Validator**, an AI-powered platform for validating startup ideas and providing strategic insights for entrepreneurs.
 
 🔗 GitHub: https://github.com/sathwiksandesh
+🔗 LinkedIn: https://www.linkedin.com/in/sathwik-sandesh-siddhantam-132214291/
