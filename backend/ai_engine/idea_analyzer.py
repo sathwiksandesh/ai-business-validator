@@ -1,0 +1,29 @@
+from google import genai
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+
+def analyze_idea(idea):
+
+    prompt = f"""
+    Analyze this startup idea:
+
+    {idea}
+
+    Provide:
+    - Market demand
+    - Competition
+    - Risks
+    - Opportunities
+    - Feasibility score
+    """
+
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=prompt
+    )
+
+    return response.text
