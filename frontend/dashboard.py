@@ -32,11 +32,11 @@ st.markdown("""
 
 /* Title */
 .page-title {
-    font-size: 3.2rem;
-    font-weight: 800;
-    color: #4F8BF9;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
+    font-size: 4.2rem;
+    font-weight: 900;
+    background: linear-gradient(90deg, #4F8BF9, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* Subtitle */
