@@ -248,5 +248,8 @@ This project is licensed under the **MIT License**.
 
 # 👨‍💻 Authors
 
-Developed as part of a **hackathon project focused on AI-powered startup
-validation and innovation tools**.
+**Siddhantam Sathwik Sandesh**
+
+Creator of **AI Business Idea Validator**, an AI-powered platform for validating startup ideas and providing strategic insights for entrepreneurs.
+
+🔗 GitHub: https://github.com/sathwiksandesh
