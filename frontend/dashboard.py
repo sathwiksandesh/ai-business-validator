@@ -111,7 +111,7 @@ hr {
 # ─────────────────────────────────────────────
 # HEADER
 # ─────────────────────────────────────────────
-st.markdown('<p class="page-title">🚀 AI Business Idea Validator</p>', unsafe_allow_html=True)
+st.markdown('<h1 class="page-title">🚀 AI Business Idea Validator</h1>', unsafe_allow_html=True)
 st.markdown(
     '<p class="page-subtitle">Validate your startup idea in seconds — '
     'AI-powered market research, competitive analysis, and strategy advice.</p>',
