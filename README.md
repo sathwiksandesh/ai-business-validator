@@ -150,7 +150,7 @@ ai-startup-validator
 
 ## 1️⃣ Clone the Repository
 
-git clone https://github.com/yourusername/ai-business-validator.git\
+git clone https://github.com/sathwiksandesh/ai-business-validator.git\
 cd ai-business-validator
 
 ## 2️⃣ Create Virtual Environment
